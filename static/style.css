@@ -39,3 +39,4 @@ h1 {
 .album {
 	display: inline-block;
 }
+.preview img {float: left;}
