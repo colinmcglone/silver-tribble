@@ -19,7 +19,7 @@ def get_albums():
 @app.route("/")
 def hello():
 	albums = get_albums()
-    return render_template('gallery.html', body = albums)
+	return render_template('gallery.html', body = albums)
 
 @app.route("/update")
 def update_photos():
@@ -42,5 +42,5 @@ def update_photos():
 				img.load()
 				img.thumbnail([1000, 1000])
 				img.save(thumblocation + '-large.jpeg', 'jpeg')
-				
+
 	return render_template('album.html', body = albums)
