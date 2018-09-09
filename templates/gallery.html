@@ -10,11 +10,11 @@
 		{% for album in albums %}
     <div class="album">
 			<h2>{{ album['album_title'] }}</h2>
-			{% for each in [0, 1, 2] %}
 			<div class="preview">
+			{% for each in [0, 1, 2] %}
 				<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/thumbs/' + album['photos'][each][:-4] + '_thumbnail.jpeg') }}">
-			</div>
 			{% endfor %}
+			</div>
 		</div><br />
 		{% endfor %}
 	</body>
