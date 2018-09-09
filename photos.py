@@ -13,5 +13,6 @@ def hello():
 def update_photos():
 	media = './static/media/'
 	albums = [join(media, a) for a in listdir(media) if isdir(join(media, a))]
+	albums = [{'album_title': x[8:], 'album_directory': x} for x in albums]
 
 	return render_template('album.html', body = albums)
