@@ -25,7 +25,7 @@ def hello():
 
 @app.route("/<album>/")
 def album_view(album):
-	get_albums()
+	albums = get_albums()
 	album = next((item for item in albums if item['album_title'] == album), None)
 
 	return render_template('album.html', album = album)
