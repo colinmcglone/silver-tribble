@@ -5,12 +5,7 @@ from PIL import Image
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return render_template('gallery.html', body = 'Hello World.')
-
-@app.route("/update")
-def update_photos():
+def get_albums():
 	media = './static/media/'
 	albums = [join(media, a) for a in listdir(media) if isdir(join(media, a))]
 	albums.sort(key=lambda x: getmtime(x), reverse=True)
@@ -18,6 +13,17 @@ def update_photos():
 
 	for album in albums:
 		album['photos'] = [x for x in listdir(album['album_directory']) if x[-3:].upper() == "JPG" ]
+
+	return albums
+
+@app.route("/")
+def hello():
+    return render_template('gallery.html', body = 'Hello World.')
+
+@app.route("/update")
+def update_photos():
+	get_albums()
+	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
 
