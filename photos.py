@@ -20,7 +20,7 @@ def hello():
 
 @app.route("/update")
 def update_photos():
-	get_albums()
+	albums = get_albums()
 	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
