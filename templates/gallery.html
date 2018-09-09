@@ -50,6 +50,15 @@
   </head>
   <body>
 		<h1>COLIN MCGLONE</h1>
-     {{ body }}
+		{% for album in albums %}
+    <div class="album">
+			<h2>{{ album['title'] }}</h2>
+			{% for preview_img in preview %}
+			<div class="preview">
+				<img src="{{ preview_img['img_src'] }}">
+			</div>
+			{% endfor %}
+		</div>
+		{% endfor %}
 	</body>
 </html>

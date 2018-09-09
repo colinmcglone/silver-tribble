@@ -44,6 +44,8 @@ def update_photos():
 				img.load()
 				img.thumbnail([1000, 1000])
 				img.save(thumblocation + '-large.jpeg', 'jpeg')
+
+
 			tag = '<a href="%s" class="js-mediaSwipe" data-rel="%s" style="background-image: %s;"></a>\n' % (pic , dirname(pic), 'url(\'' + thumblocation + '.jpeg' + '\')')
 			with open('pictures.html', 'a') as the_file:
 				the_file.write(tag)
