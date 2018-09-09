@@ -17,8 +17,8 @@ def update_photos():
 	albums = [{'album_title': x[15:], 'album_directory': x} for x in albums]
 
 	for album in albums:
-		album['photos'] = [x for x in listdir(album['album_directory'])]
+		album['photos'] = [x for x in listdir(album['album_directory']) if x[-3:].upper == "JPG" ]
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
-		
+
 	return render_template('album.html', body = albums)
