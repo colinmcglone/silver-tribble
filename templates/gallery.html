@@ -12,7 +12,7 @@
 			<h2>{{ album['title'] }}</h2>
 			{% for each in album['photos'] %}
 			<div class="preview">
-				<img src="{{ url_for(album['album_directory'], filename=each) }}">
+				<img src="{{ url_for(album['album_directory'] + '/thumbs/', filename=each[:-4] + '_thumbnail.jpeg') }}">
 			</div>
 			{% endfor %}
 		</div>
