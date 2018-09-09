@@ -9,7 +9,7 @@
 		<h1>COLIN MCGLONE</h1>
 		<h2>{{ album['album_title'] }}</h2>
 		{% for photo in album['photos'] %}
-		<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/' + photo) }}" />
+		<a href= "{{ url_for('static', filename=album['album_directory'][9:] + '/' + photo) }}"<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/thumbs/' + photo[:-4] + '_thumbnail_large.jpeg') }}" /></a>
 		<br />
 		{% endfor %}
 	</body>
