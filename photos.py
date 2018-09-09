@@ -33,14 +33,14 @@ def update_photos():
 			thumbname = "%s_thumbnail" % (photo[:-4])
 			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
 			if not exists(thumblocation + '.jpeg'):
-				img = Image.open(album['album_directory'] + photo)
+				img = Image.open(album['album_directory'] + '/' + photo)
 				try:
 					img.load()
 				except:
 					break
 				img.thumbnail([500, 500])
 				img.save(thumblocation + '.jpeg', 'jpeg')
-				img = Image.open(album['album_directory'] + photo)
+				img = Image.open(album['album_directory'] + '/' + photo)
 				img.load()
 				img.thumbnail([1000, 1000])
 				img.save(thumblocation + '-large.jpeg', 'jpeg')
