@@ -18,7 +18,8 @@ def get_albums():
 
 @app.route("/")
 def hello():
-    return render_template('gallery.html', body = 'Hello World.')
+	albums = get_albums()
+    return render_template('gallery.html', body = albums)
 
 @app.route("/update")
 def update_photos():
@@ -26,5 +27,20 @@ def update_photos():
 	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
-
+		for photo in album['photos']:
+			thumbname = "%s_thumbnail" % (photo[:-4])
+			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
+			if not exists(thumblocation + '.jpeg'):
+				img = Image.open(photo)
+				try:
+					img.load()
+				except:
+					break
+				img.thumbnail([500, 500])
+				img.save(thumblocation + '.jpeg', 'jpeg')
+				img = Image.open(pic)
+				img.load()
+				img.thumbnail([1000, 1000])
+				img.save(thumblocation + '-large.jpeg', 'jpeg')
+				
 	return render_template('album.html', body = albums)

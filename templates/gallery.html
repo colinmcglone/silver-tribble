@@ -10,9 +10,9 @@
 		{% for album in albums %}
     <div class="album">
 			<h2>{{ album['title'] }}</h2>
-			{% for preview_img in preview %}
+			{% for each in album['photos'] %}
 			<div class="preview">
-				<img src="{{ preview_img['img_src'] }}">
+				<img src="{{ url_for(album['album_directory'], filename=each) }}">
 			</div>
 			{% endfor %}
 		</div>
