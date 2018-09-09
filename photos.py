@@ -21,7 +21,7 @@ def get_albums():
 @app.route("/")
 def hello():
 	albums = get_albums()
-	return render_template('gallery.html', body = albums)
+	return render_template('gallery.html', albums = albums)
 
 @app.route("/update")
 def update_photos():
