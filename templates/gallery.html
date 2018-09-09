@@ -9,7 +9,7 @@
 		<h1>COLIN MCGLONE</h1>
 		{% for album in albums %}
     <div class="album">
-			<h2><a href="colinmcglone.ca/{{ album['album_title'] }}/">{{ album['album_title'] }}</a></h2>
+			<a href="colinmcglone.ca/{{ album['album_title'] }}/"><h2>{{ album['album_title'] }}</h2></a>
 			<div class="preview">
 			{% for each in [0, 1, 2] %}
 				<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/thumbs/' + album['photos'][each][:-4] + '_thumbnail.jpeg') }}">
