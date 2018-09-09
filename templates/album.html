@@ -1,3 +1,16 @@
-{% for album in body %}
-{{ album['album_title'] }} <br />
-{% endfor %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+		<h1>COLIN MCGLONE</h1>
+		<h2>{{ album['album_title'] }}</h2>
+		{% for photo in album['photos'] %}
+		<img src="{{ url_for('static', album['album_directory'][9:] + '/' + photo	}}" />
+		<br />
+		{% endfor %}
+	</body>
+</html>

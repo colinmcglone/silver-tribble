@@ -23,6 +23,13 @@ def hello():
 	albums = get_albums()
 	return render_template('gallery.html', albums = albums)
 
+@app.route("/<album>/")
+def album_view(album):
+	get_albums()
+	album = (item for item in albums if item['album_title'] == album).next()
+
+	return render_template('album.html', album = album)
+	
 @app.route("/update")
 def update_photos():
 	albums = get_albums()
