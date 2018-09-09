@@ -14,8 +14,6 @@ def get_albums():
 	for album in albums:
 		album['photos'] = [x for x in listdir(album['album_directory']) if x[-3:].upper() == "JPG" ]
 
-	return albums
-
 @app.route("/")
 def hello():
     return render_template('gallery.html', body = 'Hello World.')
