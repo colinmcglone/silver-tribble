@@ -27,8 +27,8 @@ def update_photos():
 	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
-#		for photo in album['photos']:
-#			thumbname = "%s_thumbnail" % (photo[:-4])
+		for photo in album['photos']:
+			thumbname = "%s_thumbnail" % (photo[:-4])
 #			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
 #			if not exists(thumblocation + '.jpeg'):
 #				img = Image.open(photo)
