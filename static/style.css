@@ -33,4 +33,13 @@ h1 {
 	width: 100%;
 	height: 700px;
 }
-.preview img {float: left;}
+.preview img {
+	float: left;
+	height: 500px;
+	width: 500px;
+	margin: 10px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: #343434;
+	border: 1px solid white;
+}
