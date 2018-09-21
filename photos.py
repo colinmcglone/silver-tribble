@@ -66,4 +66,4 @@ def update_photos():
 				except:
 					traceback.print_exc()
 
-	return render_template('album.html', body = albums)
+	return render_template('album.html', body = "success")
