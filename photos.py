@@ -49,8 +49,8 @@ def update_photos():
 				except:
 					break
 				try:
-					for orientation in ExifTags.TAGS.keys() :
-						if ExifTags.TAGS[orientation]=='Orientation' : break
+					#for orientation in ExifTags.TAGS.keys() :
+					#	if ExifTags.TAGS[orientation]=='Orientation' : break
 					exif=dict(img._getexif().items())
 
 					if exif[orientation] == 3 :
