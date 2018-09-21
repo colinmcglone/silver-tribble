@@ -64,6 +64,6 @@ def update_photos():
 					img.save(thumblocation + '.jpeg', 'jpeg')
 
 				except Exception, e:
-					return render_template('album.html', body = str(e))
+					return render_template('update.html', body = str(e))
 
-	return render_template('album.html', body = "success")
+	return render_template('update.html', body = "success")
