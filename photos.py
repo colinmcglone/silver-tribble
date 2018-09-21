@@ -46,27 +46,28 @@ def update_photos():
 				img = Image.open(album['album_directory'] + '/' + photo)
 				try:
 					img.load()
-				except:
-					break
-				try:
-					#for orientation in ExifTags.TAGS.keys() :
-					#	if ExifTags.TAGS[orientation]=='Orientation' : break
-					exif=dict(img._getexif().items())
-
-					if exif[orientation] == 3 :
-						img=img.rotate(180, expand=True)
-					elif exif[orientation] == 6 :
-						img=img.rotate(270, expand=True)
-					elif exif[orientation] == 8 :
-						img=img.rotate(90, expand=True)
-
-					img.thumbnail((1000 , 1000), Image.ANTIALIAS)
-					img.save(thumblocation + '-large.jpeg', 'jpeg')
-
-					img.thumbnail((500 , 500), Image.ANTIALIAS)
-					img.save(thumblocation + '.jpeg', 'jpeg')
-
 				except Exception as e:
 					return render_template('update.html', body = repr(e))
+#				try:
+#					for orientation in ExifTags.TAGS.keys():
+#						if ExifTags.TAGS[orientation]=='Orientation':
+#							break
+#					exif=dict(img._getexif().items())
+#
+#					if exif[orientation] == 3:
+#						img=img.rotate(180, expand=True)
+#					elif exif[orientation] == 6:
+#						img=img.rotate(270, expand=True)
+#					elif exif[orientation] == 8:
+#						img=img.rotate(90, expand=True)
+#
+#					img.thumbnail((1000, 1000), Image.ANTIALIAS)
+#					img.save(thumblocation + '-large.jpeg', 'jpeg')
+#
+#					img.thumbnail((500, 500), Image.ANTIALIAS)
+#					img.save(thumblocation + '.jpeg', 'jpeg')
+#
+#				except Exception as e:
+#					return render_template('update.html', body = repr(e))
 
 	return render_template('update.html', body = "success")
