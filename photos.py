@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from os import listdir, remove, makedirs
 from os.path import isfile, join, isdir, basename, dirname, exists, getmtime
-from PIL import Image
+from PIL import Image, ExifTags
 from raven.contrib.flask import Sentry
 
 app = Flask(__name__)
@@ -45,11 +45,25 @@ def update_photos():
 					img.load()
 				except:
 					break
-				img.thumbnail([500, 500])
-				img.save(thumblocation + '.jpeg', 'jpeg')
-				img = Image.open(album['album_directory'] + '/' + photo)
-				img.load()
-				img.thumbnail([1000, 1000])
-				img.save(thumblocation + '-large.jpeg', 'jpeg')
+				try:
+					for orientation in ExifTags.TAGS.keys() :
+						if ExifTags.TAGS[orientation]=='Orientation' : break
+					exif=dict(img._getexif().items())
+
+					if   exif[orientation] == 3 :
+						img=img.rotate(180, expand=True)
+					elif exif[orientation] == 6 :
+						img=img.rotate(270, expand=True)
+					elif exif[orientation] == 8 :
+						img=img.rotate(90, expand=True)
+
+					img.thumbnail((1000 , 1000), Image.ANTIALIAS)
+					img.save(thumblocation + '-large.jpeg', 'jpeg')
+
+					img.thumbnail((500 , 500), Image.ANTIALIAS)
+					img.save(thumblocation + '.jpeg', 'jpeg')
+
+				except:
+					traceback.print_exc()
 
 	return render_template('album.html', body = albums)
