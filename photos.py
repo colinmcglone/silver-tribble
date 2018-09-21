@@ -52,7 +52,7 @@ def update_photos():
 					for orientation in ExifTags.TAGS.keys() :
 						if ExifTags.TAGS[orientation]=='Orientation' : break
 					exif=dict(img._getexif().items())
-					
+
 					if exif[orientation] == 3 :
 						img=img.rotate(180, expand=True)
 					elif exif[orientation] == 6 :
@@ -67,6 +67,6 @@ def update_photos():
 					img.save(thumblocation + '.jpeg', 'jpeg')
 
 				except Exception as e:
-					return render_template('update.html', body = str(e))
+					return render_template('update.html', body = e)
 
 	return render_template('update.html', body = "success")
