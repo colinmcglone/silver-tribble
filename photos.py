@@ -63,7 +63,7 @@ def update_photos():
 					img.thumbnail((500 , 500), Image.ANTIALIAS)
 					img.save(thumblocation + '.jpeg', 'jpeg')
 
-				except:
-					traceback.print_exc()
+				except Exception, e:
+					return render_template('album.html', body = str(e))
 
 	return render_template('album.html', body = "success")
