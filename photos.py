@@ -33,8 +33,8 @@ def album_view(album):
 @app.route("/update")
 def update_photos():
 	albums = get_albums()
-	if not albums:
-		return render_template('update.html', body = 'No Albums')
+	return render_template('update.html', body = albums)
+
 	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
