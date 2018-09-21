@@ -33,7 +33,8 @@ def album_view(album):
 @app.route("/update")
 def update_photos():
 	albums = get_albums()
-	return render_template('update.html', body = albums)
+	if not albums:
+		return render_template('update.html', body = 'No Albums')
 
 	for album in albums:
 		if not exists(album['album_directory'] + '/thumbs/'):
@@ -51,8 +52,8 @@ def update_photos():
 					for orientation in ExifTags.TAGS.keys() :
 						if ExifTags.TAGS[orientation]=='Orientation' : break
 					exif=dict(img._getexif().items())
-
-					if   exif[orientation] == 3 :
+					
+					if exif[orientation] == 3 :
 						img=img.rotate(180, expand=True)
 					elif exif[orientation] == 6 :
 						img=img.rotate(270, expand=True)
