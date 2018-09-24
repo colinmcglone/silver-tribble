@@ -1,3 +1,5 @@
+import shutil
+
 from flask import Flask, render_template
 from os import listdir, remove, makedirs
 from os.path import isfile, join, isdir, basename, dirname, exists, getmtime
@@ -37,6 +39,7 @@ def update_photos():
 		return render_template('update.html', body = 'No Albums')
 
 	for album in albums:
+		shutil.rmtree(album['album_directory'] + '/thumbs/')
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
 		for photo in album['photos']:
