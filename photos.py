@@ -40,17 +40,17 @@ def update_photos():
 
 	for album in albums:
 		shutil.rmtree(album['album_directory'] + '/thumbs/')
-		if not exists(album['album_directory'] + '/thumbs/'):
-			makedirs(album['album_directory'] + '/thumbs/')
-		for photo in album['photos']:
-			thumbname = "%s_thumbnail" % (photo[:-4])
-			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
-			if not exists(thumblocation + '.jpeg'):
-				img = Image.open(album['album_directory'] + '/' + photo)
-				try:
-					img.load()
-				except Exception as e:
-					return render_template('update.html', body = repr(e))
+#		if not exists(album['album_directory'] + '/thumbs/'):
+#			makedirs(album['album_directory'] + '/thumbs/')
+#		for photo in album['photos']:
+#			thumbname = "%s_thumbnail" % (photo[:-4])
+#			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
+#			if not exists(thumblocation + '.jpeg'):
+#				img = Image.open(album['album_directory'] + '/' + photo)
+#				try:
+#					img.load()
+#				except Exception as e:
+#					return render_template('update.html', body = repr(e))
 #				try:
 #					for orientation in ExifTags.TAGS.keys():
 #						if ExifTags.TAGS[orientation]=='Orientation':
