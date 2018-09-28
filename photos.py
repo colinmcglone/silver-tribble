@@ -55,6 +55,7 @@ def update_photos():
 				except Exception as e:
 					return render_template('update.html', body = repr(e))
 				try:
+					line = 1
 					for orientation in ExifTags.TAGS.keys():
 						if ExifTags.TAGS[orientation]=='Orientation':
 							break
@@ -66,7 +67,7 @@ def update_photos():
 						img=img.rotate(270, expand=True)
 					elif exif[orientation] == 8:
 						img=img.rotate(90, expand=True)
-
+					line = 2
 					img.thumbnail((1000, 1000), Image.ANTIALIAS)
 					img.save(thumblocation + '-large.jpeg', 'jpeg')
 
@@ -74,6 +75,6 @@ def update_photos():
 					img.save(thumblocation + '.jpeg', 'jpeg')
 
 				except Exception as e:
-					return render_template('update.html', body = repr(e) + thumblocation)
+					return render_template('update.html', body = repr(e) + thumblocation + line)
 
 	return render_template('update.html', body = "success")
