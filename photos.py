@@ -45,41 +45,35 @@ def update_photos():
 			shutil.rmtree(album['album_directory'] + '/thumbs/')
 		if not exists(album['album_directory'] + '/thumbs/'):
 			makedirs(album['album_directory'] + '/thumbs/')
-		line = 1
 		for photo in album['photos']:
-			line = 2
 			thumbname = "%s_thumbnail" % (photo[:-4])
-			line = 3
 			thumblocation = album['album_directory'] + '/thumbs/' + thumbname
-			line = 4
 			if not exists(thumblocation + '.jpeg'):
 				img = Image.open(album['album_directory'] + '/' + photo)
-				line = 5
 				try:
 					img.load()
 				except Exception as e:
 					return render_template('update.html', body = repr(e))
 				try:
-					line = 6
 					for orientation in ExifTags.TAGS.keys():
 						if ExifTags.TAGS[orientation]=='Orientation':
 							break
 					exif=dict(img._getexif().items())
-					line = 7
+
 					if exif[orientation] == 3:
 						img=img.rotate(180, expand=True)
 					elif exif[orientation] == 6:
 						img=img.rotate(270, expand=True)
 					elif exif[orientation] == 8:
 						img=img.rotate(90, expand=True)
-					line = 8
+
 					img.thumbnail((1000, 1000), Image.ANTIALIAS)
 					img.save(thumblocation + '-large.jpeg', 'jpeg')
-					line = 9
+
 					img.thumbnail((500, 500), Image.ANTIALIAS)
 					img.save(thumblocation + '.jpeg', 'jpeg')
 
 				except Exception as e:
-					return render_template('update.html', body = repr(e) + thumblocation + str(album)+line)
+					return render_template('update.html', body = repr(e) + thumblocation)
 
 	return render_template('update.html', body = "success")
