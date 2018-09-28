@@ -16,7 +16,7 @@ def get_albums():
 	albums = [{'album_title': x[15:], 'album_directory': x} for x in albums]
 
 	for album in albums:
-		album['photos'] = [x for x in listdir(album['album_directory']) if x[-3:].upper() == "JPG" ]
+		album['photos'] = [x for x in listdir(album['album_directory']) if x[-3:].upper() == ("JPG" or "JPEG") ]
 
 	return albums
 
