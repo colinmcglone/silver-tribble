@@ -59,15 +59,17 @@ def update_photos():
 					for orientation in ExifTags.TAGS.keys():
 						if ExifTags.TAGS[orientation]=='Orientation':
 							break
-					exif=dict(img._getexif().items())
-					line = 2
-					if exif[orientation] == 3:
-						img=img.rotate(180, expand=True)
-					elif exif[orientation] == 6:
-						img=img.rotate(270, expand=True)
-					elif exif[orientation] == 8:
-						img=img.rotate(90, expand=True)
-					line = 3
+					try:
+						exif=dict(img._getexif().items())
+						if exif[orientation] == 3:
+							img=img.rotate(180, expand=True)
+						elif exif[orientation] == 6:
+							img=img.rotate(270, expand=True)
+						elif exif[orientation] == 8:
+							img=img.rotate(90, expand=True)
+					except:
+						pass
+
 					img.thumbnail((1000, 1000), Image.ANTIALIAS)
 					img.save(thumblocation + '-large.jpeg', 'jpeg')
 
