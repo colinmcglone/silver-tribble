@@ -3,7 +3,7 @@ import shutil
 from flask import Flask, render_template
 from os import listdir, remove, makedirs
 from os.path import isfile, join, isdir, basename, dirname, exists, getmtime
-from PIL import Image, ExifTags, ImageFile
+from PIL import Image, ExifTags, ImageFile, ImageOps
 from raven.contrib.flask import Sentry
 
 app = Flask(__name__)
@@ -70,11 +70,11 @@ def update_photos():
 					except:
 						pass
 
-					img.thumbnail((1000, 1000), Image.ANTIALIAS)
-					img.save(thumblocation + '-large.jpeg', 'jpeg')
+					thumb = ImageOps.fit(img, (1000, 1000), Image.ANTIALIAS, centering = (0.5, 0.5))
+					thumb.save(thumblocation + '-large.jpeg', 'jpeg', quality=95)
 
-					img.thumbnail((500, 500), Image.ANTIALIAS)
-					img.save(thumblocation + '.jpeg', 'jpeg')
+					thumb = ImageOps.fit(img, (500, 599), Image.ANTIALIAS, centering = (0.5, 0.5))
+					thumb.save(thumblocation + '.jpeg', 'jpeg', quality=95)
 
 				except Exception as e:
 					return render_template('update.html', body = repr(e) + thumblocation + str(line))
