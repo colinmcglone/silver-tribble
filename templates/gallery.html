@@ -11,8 +11,8 @@
     <div class="album">
 			<a href="{{ album['album_title'] }}"><h2>{{ album['album_title'] }}</h2></a>
 			<div class="preview">
-			{% for each in [0, 1, 2] %}
-				<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/thumbs/' + album['photos'][each][:-4] + '_thumbnail.jpeg') }}">
+			{% for each in album['photos'] %}
+				<img src="{{ url_for('static', filename=album['album_directory'][9:] + '/thumbs/' + each[:-4] + '_thumbnail.jpeg') }}">
 			{% endfor %}
 			</div>
 		</div><br />
