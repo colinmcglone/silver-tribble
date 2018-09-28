@@ -3,11 +3,13 @@ import shutil
 from flask import Flask, render_template
 from os import listdir, remove, makedirs
 from os.path import isfile, join, isdir, basename, dirname, exists, getmtime
-from PIL import Image, ExifTags
+from PIL import Image, ExifTags, ImageFile
 from raven.contrib.flask import Sentry
 
 app = Flask(__name__)
 sentry = Sentry(app, dsn='https://605561e8608b41d88f625e54cb098f41:bbef88ee71834543815dbd4abcd2ffd8@sentry.io/1277428')
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def get_albums():
 	media = './static/media/'
