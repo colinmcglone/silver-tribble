@@ -40,6 +40,8 @@ def update_photos():
 	if not albums:
 		return render_template('update.html', body = 'No Albums')
 
+	shutil.rmtree('./static/media/Bon_Echo/thumbs')
+
 	for album in albums:
 #		if exists(album['album_directory'] + '/thumbs/'):
 #			shutil.rmtree(album['album_directory'] + '/thumbs/')
