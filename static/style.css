@@ -36,12 +36,11 @@ h1 {
   overflow-y: hidden;
   white-space: nowrap;
 	display: inline-block;
-}
-.preview  img {
-  display: inline-block;
+	img {
+		display: inline-block;
+	}
 }
 img {
-	float: left;
 	height: 500px;
 	width: 500px;
 	margin: 10px;
