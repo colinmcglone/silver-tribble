@@ -42,9 +42,6 @@ a {
   overflow-y: hidden;
   white-space: nowrap;
 	display: inline-block;
-	img {
-		display: inline-block;
-	}
 }
 img {
 	height: 500px;
