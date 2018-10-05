@@ -26,8 +26,14 @@ h1 {
 	2px 2px 0 #939393;
 	text-align: center;
 }
+a {
+	color: #005c33;
+	font-size: 2em;
+}
 .album {
 	display: inline-block;
+	margin: 0 auto;
+	width: 1500px;
 }
 .preview {
 	width: 1500px;
@@ -43,9 +49,9 @@ h1 {
 img {
 	height: 500px;
 	width: 500px;
-	margin: 10px;
+	margin: 0px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-color: #343434;
-	border: 1px solid white;
+	border: 10px solid #939393;
 }
