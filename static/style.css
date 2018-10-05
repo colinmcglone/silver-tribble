@@ -33,10 +33,10 @@ a {
 .album {
 	display: inline-block;
 	margin: 0 auto;
-	width: 1500px;
+	width: 1560px;
 }
 .preview {
-	width: 1500px;
+	width: 1560px;
 	height: 550px;
 	overflow-x: scroll;
   overflow-y: hidden;
@@ -50,6 +50,7 @@ img {
 	height: 500px;
 	width: 500px;
 	margin: 0px;
+	padding: 0px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-color: #343434;
